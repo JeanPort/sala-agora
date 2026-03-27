@@ -1,0 +1,26 @@
+
+
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: realmeet-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: realmeetdbtest
+      MYSQL_USER: realmeet
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - realmeet_mysql_data:/var/lib/mysql
+    networks:
+      - realmeet-network
+
+networks:
+  realmeet-network:
+
+volumes:
+  realmeet_mysql_data:

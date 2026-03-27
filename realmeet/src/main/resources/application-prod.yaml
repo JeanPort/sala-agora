@@ -1,0 +1,25 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/${NAME_DB:realmeetdbtest}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${USER_NAME_DB:realmeet}
+    password: ${PASSWORD_DB:123456}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/realmeetdbtest?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#    username: realmeet
+#    password: 123456
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+  flyway:
+    validate-on-migrate: true
+    clean-disabled: true
+    baseline-on-migrate: true
