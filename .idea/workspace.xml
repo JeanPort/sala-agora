@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8ebd9b94-c8d4-40b1-b035-9c128d4201e8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/controller/RoomController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/dto/RoomRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/dto/RoomResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/ResponseErro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/RoomNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/mapper/RoomMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/service/RoomService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/util/ResponseEntityUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/core/BaseUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomMapperUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomServiceUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/MapperUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/TestConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/TestDataCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sala-agora.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/realmeet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3BWvltuyKSOJv8N7CbcJqlBniUD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.RealmeetApplication.executor": "Run",
+    "JUnit.RoomMapperUnit.testFromEntityToResponse.executor": "Run",
+    "JUnit.RoomServiceUnitTest.testGetRoom.executor": "Run",
+    "Maven.sala-agora [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.jean.realmeet.exception" />
+      <recent name="com.jean.realmeet.dto" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.RoomServiceUnitTest.testGetRoom">
+    <configuration name="RealmeetApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.RealmeetApplication" />
+      <module name="realmeet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jean.realmeet.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomMapperUnitTest.testFromEntityToResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="realmeet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jean.realmeet.unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.jean.realmeet.unit" />
+      <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.unit.RoomMapperUnitTest" />
+      <option name="METHOD_NAME" value="testFromEntityToResponse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomServiceUnitTest.testGetRoom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="realmeet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jean.realmeet.unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.jean.realmeet.unit" />
+      <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.unit.RoomServiceUnitTest" />
+      <option name="METHOD_NAME" value="testGetRoom" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RoomServiceUnitTest.testGetRoom" />
+        <item itemvalue="JUnit.RoomMapperUnitTest.testFromEntityToResponse" />
+        <item itemvalue="Application.RealmeetApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ebd9b94-c8d4-40b1-b035-9c128d4201e8" name="Changes" comment="" />
+      <created>1774617794688</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774617794688</updated>
+    </task>
+    <servers />
+  </component>
+</project>
