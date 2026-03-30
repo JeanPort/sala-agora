@@ -2,6 +2,7 @@ package com.jean.realmeet.unit;
 
 import com.jean.realmeet.core.BaseUnitTest;
 import com.jean.realmeet.domain.repository.RoomRepository;
+import com.jean.realmeet.exception.RoomNotFoundException;
 import com.jean.realmeet.service.RoomService;
 import com.jean.realmeet.utils.MapperUtils;
 import com.jean.realmeet.utils.TestConstants;
@@ -28,15 +29,25 @@ public class RoomServiceUnitTest extends BaseUnitTest {
     }
 
     @Test
-    void testGetRoom(){
+    void testGetRoomSuccess(){
 
         var roomExpected = TestDataCreator.roomBuilder().build();
-        Mockito.when(repository.findById(TestConstants.DEFAULT_ROOM_ID)).thenReturn(Optional.of(roomExpected));
+        Mockito.when(repository.findByIdAndActive(TestConstants.DEFAULT_ROOM_ID, true)).thenReturn(Optional.of(roomExpected));
 
         var result = victim.getRoom(TestConstants.DEFAULT_ROOM_ID);
 
         Assertions.assertEquals(roomExpected.getId(), result.id());
         Assertions.assertEquals(roomExpected.getName(), result.name());
         Assertions.assertEquals(roomExpected.getSeats(), result.seats());
+    }
+
+    @Test
+    void testGetRoomNotFound(){
+
+        var room = TestDataCreator.roomBuilder().build();
+        Mockito.when(repository.findByIdAndActive(TestConstants.DEFAULT_ROOM_ID, true)).thenReturn(Optional.empty());
+
+        Assertions.assertThrowsExactly(RoomNotFoundException.class,() -> victim.getRoom(TestConstants.DEFAULT_ROOM_ID));
+
     }
 }

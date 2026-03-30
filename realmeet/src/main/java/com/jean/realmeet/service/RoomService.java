@@ -24,7 +24,7 @@ public class RoomService {
     @Transactional(readOnly = true)
     public RoomResponse getRoom(Long roomId){
         Objects.nonNull(roomId);
-        return repository.findById(roomId)
+        return repository.findByIdAndActive(roomId, true)
                 .map(mapper::fromRoomToResponse)
                 .orElseThrow(RoomNotFoundException::new);
     }

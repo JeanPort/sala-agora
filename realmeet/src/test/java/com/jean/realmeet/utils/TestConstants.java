@@ -1,7 +1,5 @@
 package com.jean.realmeet.utils;
 
-import com.jean.realmeet.domain.entity.Room;
-
 public final class TestConstants {
 
     public static final Long DEFAULT_ROOM_ID = 1L;
