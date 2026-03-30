@@ -43,8 +43,6 @@ public class RoomServiceUnitTest extends BaseUnitTest {
 
     @Test
     void testGetRoomNotFound(){
-
-        var room = TestDataCreator.roomBuilder().build();
         Mockito.when(repository.findByIdAndActive(TestConstants.DEFAULT_ROOM_ID, true)).thenReturn(Optional.empty());
 
         Assertions.assertThrowsExactly(RoomNotFoundException.class,() -> victim.getRoom(TestConstants.DEFAULT_ROOM_ID));

@@ -1,7 +1,6 @@
 package com.jean.realmeet.core;
 
 import com.jean.realmeet.RealmeetApplication;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -33,11 +32,11 @@ public abstract class BaseIntegrationTest {
         registry.add("spring.datasource.password", mysql::getPassword);
     }
 
-    @BeforeEach
-    void setUp(){
-        //setUpFlyway();
-        //setUpEach();
-    }
+//    @BeforeEach
+//    void setUp(){
+//        //setUpFlyway();
+//        //setUpEach();
+//    }
 
 //    protected void setUpEach(){}
 
