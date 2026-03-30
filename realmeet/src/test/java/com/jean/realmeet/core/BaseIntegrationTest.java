@@ -27,6 +27,7 @@ public abstract class BaseIntegrationTest {
                     .withUsername("admin")
                     .withPassword("admin");
 
+
     @DynamicPropertySource
     static void configure(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", mysql::getJdbcUrl);
@@ -42,8 +43,8 @@ public abstract class BaseIntegrationTest {
 
     protected void setUpEach(){}
 
-    private void setUpFlyway(){
-        flyway.clean();
-        flyway.migrate();
-    }
+//    private void setUpFlyway(){
+//        flyway.clean();
+//        flyway.migrate();
+//    }
 }
