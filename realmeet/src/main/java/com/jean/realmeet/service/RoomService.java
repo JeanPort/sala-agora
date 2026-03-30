@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
+import static java.util.Objects.nonNull;
+
 @Service
 @Transactional
 public class RoomService {
@@ -23,7 +25,7 @@ public class RoomService {
 
     @Transactional(readOnly = true)
     public RoomResponse getRoom(Long roomId){
-        Objects.nonNull(roomId);
+        nonNull(roomId);
         return repository.findByIdAndActive(roomId, true)
                 .map(mapper::fromRoomToResponse)
                 .orElseThrow(RoomNotFoundException::new);

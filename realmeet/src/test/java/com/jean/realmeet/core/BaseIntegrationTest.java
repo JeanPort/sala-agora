@@ -25,6 +25,7 @@ public abstract class BaseIntegrationTest {
                     .withPassword("admin");
 
 
+    @SuppressWarnings("unused")
     @DynamicPropertySource
     static void configure(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", mysql::getJdbcUrl);
