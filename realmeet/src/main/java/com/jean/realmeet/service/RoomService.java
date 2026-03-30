@@ -7,8 +7,6 @@ import com.jean.realmeet.mapper.RoomMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
-
 import static java.util.Objects.nonNull;
 
 @Service
