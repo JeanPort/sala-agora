@@ -20,9 +20,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RoomApiIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
+    @SuppressWarnings("unused")
     private MockMvc mockMvc;
 
     @Autowired
+    @SuppressWarnings("unused")
     private RoomRepository roomRepository;
 
     @Test
