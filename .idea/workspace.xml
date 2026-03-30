@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ebd9b94-c8d4-40b1-b035-9c128d4201e8" name="Changes" comment="Implementing the getRoom functionality and its unit test.">
-      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/core/BaseIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/integration/RoomApiIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/resources/application-integration-test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/domain/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/domain/repository/RoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/service/RoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomServiceUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomServiceUnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/TestConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/TestConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/TestDataCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/TestDataCreator.java" afterDir="false" />
-    </list>
+    <list default="true" id="8ebd9b94-c8d4-40b1-b035-9c128d4201e8" name="Changes" comment="getRoom by ID" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -182,7 +171,47 @@
       <option name="project" value="LOCAL" />
       <updated>1774700528021</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="getRoom by ID">
+      <option name="closed" value="true" />
+      <created>1774876958919</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1774876958919</updated>
+    </task>
+    <task id="LOCAL-00004" summary="getRoom by ID">
+      <option name="closed" value="true" />
+      <created>1774877241720</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1774877241720</updated>
+    </task>
+    <task id="LOCAL-00005" summary="getRoom by ID">
+      <option name="closed" value="true" />
+      <created>1774877342643</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1774877342643</updated>
+    </task>
+    <task id="LOCAL-00006" summary="getRoom by ID">
+      <option name="closed" value="true" />
+      <created>1774877394496</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1774877394496</updated>
+    </task>
+    <task id="LOCAL-00007" summary="getRoom by ID">
+      <option name="closed" value="true" />
+      <created>1774877586136</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1774877586136</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,6 +227,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implementing the getRoom functionality and its unit test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing the getRoom functionality and its unit test." />
+    <MESSAGE value="getRoom by ID" />
+    <option name="LAST_COMMIT_MESSAGE" value="getRoom by ID" />
   </component>
 </project>
