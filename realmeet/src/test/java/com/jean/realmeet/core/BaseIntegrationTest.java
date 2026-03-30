@@ -17,8 +17,8 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @ActiveProfiles("integration-test")
 public abstract class BaseIntegrationTest {
 
-    @Autowired
-    private Flyway flyway;
+//    @Autowired
+//    private Flyway flyway;
 
     @Container
     static MySQLContainer<?> mysql =
@@ -41,7 +41,7 @@ public abstract class BaseIntegrationTest {
         //setUpEach();
     }
 
-    protected void setUpEach(){}
+//    protected void setUpEach(){}
 
 //    private void setUpFlyway(){
 //        flyway.clean();
