@@ -27,4 +27,14 @@ class RoomMapperUnitTest extends BaseUnitTest {
         Assertions.assertEquals(room.getName(), dto.name());
         Assertions.assertEquals(room.getSeats(), dto.seats());
     }
+
+    @Test
+    void testFromCreateRoomRequestToResponse(){
+        var request = TestDataCreator.createRoomRequest();
+        var room = victim.fromCreateRoomRequestToEntity(request);
+
+        Assertions.assertEquals(request.name(), room.getName());
+        Assertions.assertEquals(request.seats(), room.getSeats());
+        Assertions.assertEquals(null, room.getActive());
+    }
 }

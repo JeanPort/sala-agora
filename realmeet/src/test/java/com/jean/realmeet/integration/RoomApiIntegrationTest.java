@@ -1,14 +1,18 @@
 package com.jean.realmeet.integration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jean.realmeet.core.BaseIntegrationTest;
 import com.jean.realmeet.domain.entity.Room;
 import com.jean.realmeet.domain.repository.RoomRepository;
+import com.jean.realmeet.dto.CreateRoomRequest;
 import com.jean.realmeet.utils.TestConstants;
 import com.jean.realmeet.utils.TestDataCreator;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -24,17 +28,17 @@ public class RoomApiIntegrationTest extends BaseIntegrationTest {
     private MockMvc mockMvc;
 
     @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
     @SuppressWarnings("unused")
     private RoomRepository roomRepository;
 
     @Test
     void getRoomSuccess() throws Exception {
-        // 🔹 Arrange (criar dados no banco)
         Room room = TestDataCreator.roomBuilder().build();
 
         Room savedRoom = roomRepository.save(room);
-
-        // 🔹 Act + Assert
         mockMvc.perform(MockMvcRequestBuilders.get("/api/rooms/{id}", savedRoom.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(savedRoom.getId()))
@@ -45,22 +49,65 @@ public class RoomApiIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void getRoomDoesNotExist() throws Exception {
-
         mockMvc.perform(MockMvcRequestBuilders.get("/api/rooms/{id}", TestConstants.DEFAULT_ROOM_ID))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     void getRoomActive() throws Exception {
-        // 🔹 Arrange (criar dados no banco)
-
         Room room = TestDataCreator.roomBuilder().active(false).build();
         Room savedRoom = roomRepository.save(room);
 
         Assertions.assertEquals(false, savedRoom.getActive());
 
-        // 🔹 Act + Assert
         mockMvc.perform(MockMvcRequestBuilders.get("/api/rooms/{id}", savedRoom.getId()))
                 .andExpect(status().isNotFound());
+    }
+
+
+    @Test
+    @DisplayName("Should return 201 and created room when request is valid")
+    void createRoom_whenRequestIsValid_shouldReturnCreatedRoom() throws Exception {
+        var request = TestDataCreator.createRoomRequest();
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/rooms")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.name").value(request.name()))
+                .andExpect(jsonPath("$.seats").value(request.seats()))
+                .andExpect(jsonPath("$.active").value(true));
+    }
+
+
+    @Test
+    @DisplayName("Should return 422 when room fields are null")
+    void createRoom_whenFieldsAreNull_shouldReturnUnprocessableEntity() throws Exception {
+        var request = new CreateRoomRequest(null, null);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/rooms")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(jsonPath("$.message").value("Validation failed"))
+                .andExpect(jsonPath("$.errors").isArray()); // ajuste para seus campos
+    }
+
+    @Test
+    @DisplayName("Should return 409 when creating room with duplicate active name")
+    void createRoom_whenNameIsDuplicate_shouldReturnConflict() throws Exception {
+        var room = TestDataCreator.roomBuilder().build();
+        var roomCreated = roomRepository.save(room);
+
+        Assertions.assertNotNull(roomCreated.getId());
+        Assertions.assertEquals(1, roomRepository.count());
+
+        var request = new CreateRoomRequest(roomCreated.getName(), roomCreated.getSeats());
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/rooms")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isConflict());
     }
 }
