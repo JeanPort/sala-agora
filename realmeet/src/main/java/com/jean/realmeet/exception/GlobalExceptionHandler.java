@@ -1,5 +1,6 @@
 package com.jean.realmeet.exception;
 
+import com.jean.realmeet.util.ResponseEntityUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -38,7 +39,7 @@ public class GlobalExceptionHandler {
                 .map(fieldError -> new ResponseErro.FieldErro(fieldError.getField(), fieldError.getDefaultMessage()))
                 .toList();
         var status = HttpStatus.UNPROCESSABLE_ENTITY;
-        return ResponseEntity.unprocessableEntity().body(new ResponseErro(status.value(),
+        return ResponseEntityUtils.unprocessableEntity(new ResponseErro(status.value(),
                 status.getReasonPhrase(),
                 LocalDateTime.now(),
                 "Validation failed",

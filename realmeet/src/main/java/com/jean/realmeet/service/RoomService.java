@@ -1,10 +1,8 @@
 package com.jean.realmeet.service;
 
-import com.jean.realmeet.domain.entity.Room;
 import com.jean.realmeet.domain.repository.RoomRepository;
 import com.jean.realmeet.dto.CreateRoomRequest;
 import com.jean.realmeet.dto.RoomResponse;
-import com.jean.realmeet.exception.ConflictException;
 import com.jean.realmeet.exception.RoomNotFoundException;
 import com.jean.realmeet.mapper.RoomMapper;
 import com.jean.realmeet.validator.RoomValidator;
