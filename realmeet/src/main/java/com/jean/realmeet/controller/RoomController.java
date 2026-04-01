@@ -29,4 +29,10 @@ public class RoomController {
         var roomCreated = roomService.create(request);
         return ResponseEntityUtils.created(roomCreated, roomCreated.id());
     }
+
+    @DeleteMapping("/{roomId}")
+    public ResponseEntity<Object> delete(@PathVariable Long roomId){
+        roomService.delete(roomId);
+        return ResponseEntityUtils.noContent();
+    }
 }

@@ -24,14 +24,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RoomApiIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
-    @SuppressWarnings("unused")
     private MockMvc mockMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
-    @SuppressWarnings("unused")
     private RoomRepository roomRepository;
 
     @Test
@@ -91,7 +89,7 @@ public class RoomApiIntegrationTest extends BaseIntegrationTest {
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(jsonPath("$.message").value("Validation failed"))
-                .andExpect(jsonPath("$.errors").isArray()); // ajuste para seus campos
+                .andExpect(jsonPath("$.errors").isArray());
     }
 
     @Test
@@ -109,5 +107,32 @@ public class RoomApiIntegrationTest extends BaseIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isConflict());
+    }
+
+    @Test
+    void deleteRoomShouldSoftDeleteSuccessfully() throws Exception {
+        var room = TestDataCreator.roomBuilder()
+                .active(true)
+                .build();
+
+        room = roomRepository.save(room);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/api/rooms/{id}", room.getId()))
+                .andExpect(status().isNoContent());
+
+        var deletedRoom = roomRepository.findById(room.getId());
+
+        Assertions.assertTrue(deletedRoom.isPresent());
+        Assertions.assertFalse(deletedRoom.get().getActive());
+    }
+
+    @Test
+    void deleteRoomShouldReturnNotFoundWhenRoomDoesNotExist() throws Exception {
+        var nonExistentId = TestConstants.DEFAULT_ROOM_ID;
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .delete("/api/rooms/{id}", nonExistentId))
+                .andExpect(status().isNotFound());
     }
 }

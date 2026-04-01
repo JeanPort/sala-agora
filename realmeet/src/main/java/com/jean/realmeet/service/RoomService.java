@@ -1,5 +1,6 @@
 package com.jean.realmeet.service;
 
+import com.jean.realmeet.domain.entity.Room;
 import com.jean.realmeet.domain.repository.RoomRepository;
 import com.jean.realmeet.dto.CreateRoomRequest;
 import com.jean.realmeet.dto.RoomResponse;
@@ -42,12 +43,11 @@ public class RoomService {
         return mapper.fromRoomToResponse(room);
     }
 
-    private void validateNameUniqueness(String name, Long id){
-        var roomExistent = repository.findByNameAndActive(name, true);
-        roomExistent.ifPresent(room -> {
-            if (!room.getId().equals(id)){
-                throw new ConflictException("Room name already in use");
-            }
-        });
+    @Transactional
+    public void delete(Long id){
+        var room = repository.findByIdAndActive(id, true)
+                .orElseThrow(RoomNotFoundException::new);
+
+        room.desative();
     }
 }

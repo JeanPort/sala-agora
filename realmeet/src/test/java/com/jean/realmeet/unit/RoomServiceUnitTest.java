@@ -77,4 +77,24 @@ public class RoomServiceUnitTest extends BaseUnitTest {
 
         assertThrows(ConflictException.class, () -> victim.create(dto));
     }
+
+    @Test
+    void shouldDeactivateRoomWhenRoomExistsAndIsActive(){
+        var room = TestDataCreator.roomBuilder().id(TestConstants.DEFAULT_ROOM_ID).active(true).build();
+
+        Mockito.when(repository.findByIdAndActive(room.getId(), true)).thenReturn(Optional.of(room));
+        Assertions.assertDoesNotThrow(() -> victim.delete(room.getId()));
+        Assertions.assertFalse(room.getActive());
+        verify(repository).findByIdAndActive(room.getId(), true);
+    }
+
+    @Test
+    void shouldThrowRoomNotFoundExceptionWhenRoomDoesNotExistOrIsInactive(){
+        var roomId = TestConstants.DEFAULT_ROOM_ID;
+
+        Mockito.when(repository.findByIdAndActive(roomId, true)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(RoomNotFoundException.class, () -> victim.delete(roomId));
+        verify(repository).findByIdAndActive(roomId, true);
+    }
 }

@@ -35,4 +35,8 @@ public final class ResponseEntityUtils {
 
         return ResponseEntity.created(uri).body(body);
     }
+
+    public static <T> ResponseEntity<T> noContent() {
+        return ResponseEntity.noContent().build();
+    }
 }

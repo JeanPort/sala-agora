@@ -32,4 +32,8 @@ public class Room {
             active = true;
         }
     }
+
+    public void desative(){
+        active = false;
+    }
 }

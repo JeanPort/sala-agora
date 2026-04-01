@@ -4,25 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ebd9b94-c8d4-40b1-b035-9c128d4201e8" name="Changes" comment="getRoom by ID">
-      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/ConflictException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/validator/RoomValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomValidatorUnitTest.java" afterDir="false" />
+    <list default="true" id="8ebd9b94-c8d4-40b1-b035-9c128d4201e8" name="Changes" comment="create room">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/controller/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/domain/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/domain/repository/RoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/dto/RoomRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/dto/CreateRoomRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/ResponseErro.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/exception/ResponseErro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/mapper/RoomMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/mapper/RoomMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/domain/entity/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/domain/entity/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/service/RoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/util/ResponseEntityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/main/java/com/jean/realmeet/util/ResponseEntityUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/core/BaseIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/core/BaseIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/core/BaseUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/core/BaseUnitTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/integration/RoomApiIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/integration/RoomApiIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomMapperUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomMapperUnitTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomServiceUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/unit/RoomServiceUnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/TestDataCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/realmeet/src/test/java/com/jean/realmeet/utils/TestDataCreator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +49,8 @@
     "JUnit.RoomApiIntegrationTest.createRoom_whenFieldsAreNull_shouldReturnUnprocessableEntity.executor": "Run",
     "JUnit.RoomApiIntegrationTest.createRoom_whenNameIsDuplicate_shouldReturnConflict.executor": "Run",
     "JUnit.RoomApiIntegrationTest.createRoom_whenRequestIsValid_shouldReturnCreatedRoom.executor": "Run",
+    "JUnit.RoomApiIntegrationTest.deleteRoomShouldReturnNotFoundWhenRoomDoesNotExist.executor": "Run",
+    "JUnit.RoomApiIntegrationTest.deleteRoomShouldSoftDeleteSuccessfully.executor": "Run",
     "JUnit.RoomApiIntegrationTest.executor": "Run",
     "JUnit.RoomApiIntegrationTest.getRoomActive.executor": "Run",
     "JUnit.RoomApiIntegrationTest.shouldReturnRoomById.executor": "Run",
@@ -68,7 +59,9 @@
     "JUnit.RoomMapperUnitTest.executor": "Run",
     "JUnit.RoomMapperUnitTest.testFromCreateRoomRequestToResponse.executor": "Run",
     "JUnit.RoomServiceUnitTest.executor": "Run",
+    "JUnit.RoomServiceUnitTest.shouldDeactivateRoomWhenRoomExistsAndIsActive.executor": "Run",
     "JUnit.RoomServiceUnitTest.shouldThrowExceptionWhenValidatorFailsOnCreate.executor": "Run",
+    "JUnit.RoomServiceUnitTest.shouldThrowRoomNotFoundExceptionWhenRoomDoesNotExistOrIsInactive.executor": "Run",
     "JUnit.RoomServiceUnitTest.testCreateRoomSuccess.executor": "Run",
     "JUnit.RoomServiceUnitTest.testGetRoom.executor": "Run",
     "JUnit.RoomValidatorUnitTest.executor": "Run",
@@ -101,8 +94,8 @@
       <recent name="com.jean.realmeet.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in realmeet">
-    <configuration name="RoomApiIntegrationTest.createRoom_whenNameIsDuplicate_shouldReturnConflict" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.RoomApiIntegrationTest">
+    <configuration name="RoomApiIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="realmeet" />
       <extension name="coverage">
         <pattern>
@@ -112,28 +105,44 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.jean.realmeet.integration" />
       <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.integration.RoomApiIntegrationTest" />
-      <option name="METHOD_NAME" value="createRoom_whenNameIsDuplicate_shouldReturnConflict" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RoomServiceUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="realmeet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.jean.realmeet.unit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.jean.realmeet.unit" />
-      <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.unit.RoomServiceUnitTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceUnitTest.shouldThrowExceptionWhenValidatorFailsOnCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RoomApiIntegrationTest.deleteRoomShouldReturnNotFoundWhenRoomDoesNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="realmeet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jean.realmeet.integration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.jean.realmeet.integration" />
+      <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.integration.RoomApiIntegrationTest" />
+      <option name="METHOD_NAME" value="deleteRoomShouldReturnNotFoundWhenRoomDoesNotExist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomApiIntegrationTest.deleteRoomShouldSoftDeleteSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="realmeet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jean.realmeet.integration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.jean.realmeet.integration" />
+      <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.integration.RoomApiIntegrationTest" />
+      <option name="METHOD_NAME" value="deleteRoomShouldSoftDeleteSuccessfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomServiceUnitTest.shouldDeactivateRoomWhenRoomExistsAndIsActive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="realmeet" />
       <extension name="coverage">
         <pattern>
@@ -143,13 +152,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.jean.realmeet.unit" />
       <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.unit.RoomServiceUnitTest" />
-      <option name="METHOD_NAME" value="shouldThrowExceptionWhenValidatorFailsOnCreate" />
+      <option name="METHOD_NAME" value="shouldDeactivateRoomWhenRoomExistsAndIsActive" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceUnitTest.testCreateRoomSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RoomServiceUnitTest.shouldThrowRoomNotFoundExceptionWhenRoomDoesNotExistOrIsInactive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="realmeet" />
       <extension name="coverage">
         <pattern>
@@ -159,27 +168,19 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.jean.realmeet.unit" />
       <option name="MAIN_CLASS_NAME" value="com.jean.realmeet.unit.RoomServiceUnitTest" />
-      <option name="METHOD_NAME" value="testCreateRoomSuccess" />
+      <option name="METHOD_NAME" value="shouldThrowRoomNotFoundExceptionWhenRoomDoesNotExistOrIsInactive" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="java in realmeet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="realmeet" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/realmeet/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.java in realmeet" />
-        <item itemvalue="JUnit.RoomApiIntegrationTest.createRoom_whenNameIsDuplicate_shouldReturnConflict" />
-        <item itemvalue="JUnit.RoomServiceUnitTest.testCreateRoomSuccess" />
-        <item itemvalue="JUnit.RoomServiceUnitTest" />
-        <item itemvalue="JUnit.RoomServiceUnitTest.shouldThrowExceptionWhenValidatorFailsOnCreate" />
+        <item itemvalue="JUnit.RoomApiIntegrationTest" />
+        <item itemvalue="JUnit.RoomApiIntegrationTest.deleteRoomShouldReturnNotFoundWhenRoomDoesNotExist" />
+        <item itemvalue="JUnit.RoomApiIntegrationTest.deleteRoomShouldSoftDeleteSuccessfully" />
+        <item itemvalue="JUnit.RoomServiceUnitTest.shouldThrowRoomNotFoundExceptionWhenRoomDoesNotExistOrIsInactive" />
+        <item itemvalue="JUnit.RoomServiceUnitTest.shouldDeactivateRoomWhenRoomExistsAndIsActive" />
       </list>
     </recent_temporary>
   </component>
@@ -288,7 +289,23 @@
       <option name="project" value="LOCAL" />
       <updated>1774878320918</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="getRoom by ID">
+      <option name="closed" value="true" />
+      <created>1774981360834</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1774981360834</updated>
+    </task>
+    <task id="LOCAL-00014" summary="create room">
+      <option name="closed" value="true" />
+      <created>1774981480595</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1774981480595</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -305,6 +322,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implementing the getRoom functionality and its unit test." />
     <MESSAGE value="getRoom by ID" />
-    <option name="LAST_COMMIT_MESSAGE" value="getRoom by ID" />
+    <MESSAGE value="create room" />
+    <option name="LAST_COMMIT_MESSAGE" value="create room" />
   </component>
 </project>
