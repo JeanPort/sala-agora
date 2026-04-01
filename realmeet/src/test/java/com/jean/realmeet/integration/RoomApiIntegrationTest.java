@@ -1,10 +1,12 @@
 package com.jean.realmeet.integration;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jean.realmeet.core.BaseIntegrationTest;
 import com.jean.realmeet.domain.entity.Room;
 import com.jean.realmeet.domain.repository.RoomRepository;
 import com.jean.realmeet.dto.CreateRoomRequest;
+import com.jean.realmeet.dto.UpdateRoomRequest;
 import com.jean.realmeet.utils.TestConstants;
 import com.jean.realmeet.utils.TestDataCreator;
 import org.junit.jupiter.api.Assertions;
@@ -95,8 +97,7 @@ public class RoomApiIntegrationTest extends BaseIntegrationTest {
     @Test
     @DisplayName("Should return 409 when creating room with duplicate active name")
     void createRoom_whenNameIsDuplicate_shouldReturnConflict() throws Exception {
-        var room = TestDataCreator.roomBuilder().build();
-        var roomCreated = roomRepository.save(room);
+        var roomCreated = roomRepository.saveAndFlush(TestDataCreator.roomBuilder().build());
 
         Assertions.assertNotNull(roomCreated.getId());
         Assertions.assertEquals(1, roomRepository.count());
@@ -111,17 +112,13 @@ public class RoomApiIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void deleteRoomShouldSoftDeleteSuccessfully() throws Exception {
-        var room = TestDataCreator.roomBuilder()
-                .active(true)
-                .build();
-
-        room = roomRepository.save(room);
+        Long roomId = roomRepository.saveAndFlush(TestDataCreator.roomBuilder().active(true).build()).getId();
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/api/rooms/{id}", room.getId()))
+                        .delete("/api/rooms/{id}", roomId))
                 .andExpect(status().isNoContent());
 
-        var deletedRoom = roomRepository.findById(room.getId());
+        var deletedRoom = roomRepository.findById(roomId);
 
         Assertions.assertTrue(deletedRoom.isPresent());
         Assertions.assertFalse(deletedRoom.get().getActive());
@@ -135,4 +132,77 @@ public class RoomApiIntegrationTest extends BaseIntegrationTest {
                         .delete("/api/rooms/{id}", nonExistentId))
                 .andExpect(status().isNotFound());
     }
+
+    @Test
+    void updateRoomShouldReturnUpdatedRoomWhenValidRequest() throws Exception {
+        var room = TestDataCreator.roomBuilder().build();
+
+        var idRoomSaved = roomRepository.saveAndFlush(room).getId();
+        var request = new UpdateRoomRequest("Novo nome", 1);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/rooms/{id}", idRoomSaved)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(request.name()))
+                .andExpect(jsonPath("$.seats").value(request.seats()))
+                .andExpect(jsonPath("$.active").value(true));
+    }
+
+    @Test
+    void updateRoomShouldReturnNotFoundWhenRoomDoesNotExist() throws Exception {
+        var request = TestDataCreator.updateRoomRequest();
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/rooms/{id}", TestConstants.DEFAULT_ROOM_ID)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isNotFound());
+    }
+
+
+    @Test
+    void updateRoomShouldReturnNotFoundWhenRoomIsInactive() throws Exception {
+        var room = TestDataCreator.roomBuilder().active(false).build();
+        var idRoomSaved = roomRepository.saveAndFlush(room).getId();
+        var request = new UpdateRoomRequest("Novo nome", 1);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/rooms/{id}", idRoomSaved)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void updateRoomShouldReturnConflictWhenNameAlreadyExists() throws Exception {
+        var room1 = roomRepository.save(
+                TestDataCreator.roomBuilder()
+                        .name("Sala A")
+                        .active(true)
+                        .build()
+        );
+        var room2 = roomRepository.save(
+                TestDataCreator.roomBuilder()
+                        .name("Sala B")
+                        .active(true)
+                        .build()
+        );
+
+        var request = new UpdateRoomRequest(room1.getName(), 10);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/api/rooms/{id}", room2.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isConflict());
+    }
+
+    @Test
+    void updateRoomShouldReturnBadRequestWhenNameIsBlank (){}
+
+    @Test
+    void updateRoomShouldReturnBadRequestWhenNameIsNull(){}
+
+    @Test
+    void updateRoomShouldReturnBadRequestWhenSeatsIsNull(){}
+
 }

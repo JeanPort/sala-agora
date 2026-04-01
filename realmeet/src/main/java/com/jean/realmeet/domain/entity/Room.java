@@ -36,4 +36,9 @@ public class Room {
     public void desative(){
         active = false;
     }
+
+    public void update(String name, Integer seats){
+        this.name = name;
+        this.seats = seats;
+    }
 }

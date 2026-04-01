@@ -2,6 +2,7 @@ package com.jean.realmeet.unit;
 
 import com.jean.realmeet.core.BaseUnitTest;
 import com.jean.realmeet.domain.repository.RoomRepository;
+import com.jean.realmeet.dto.UpdateRoomRequest;
 import com.jean.realmeet.exception.ConflictException;
 import com.jean.realmeet.exception.RoomNotFoundException;
 import com.jean.realmeet.service.RoomService;
@@ -18,8 +19,7 @@ import org.mockito.Mockito;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 
 public class RoomServiceUnitTest extends BaseUnitTest {
@@ -84,8 +84,9 @@ public class RoomServiceUnitTest extends BaseUnitTest {
 
         Mockito.when(repository.findByIdAndActive(room.getId(), true)).thenReturn(Optional.of(room));
         Assertions.assertDoesNotThrow(() -> victim.delete(room.getId()));
-        Assertions.assertFalse(room.getActive());
+        //Assertions.assertFalse(room.getActive());
         verify(repository).findByIdAndActive(room.getId(), true);
+        verify(repository).deactive(room.getId());
     }
 
     @Test
@@ -96,5 +97,45 @@ public class RoomServiceUnitTest extends BaseUnitTest {
 
         Assertions.assertThrows(RoomNotFoundException.class, () -> victim.delete(roomId));
         verify(repository).findByIdAndActive(roomId, true);
+    }
+
+    @Test
+    void testUpdateRoomSuccess(){
+
+        var room = TestDataCreator.roomBuilder().id(TestConstants.DEFAULT_ROOM_ID).active(true).build();
+        var request = new UpdateRoomRequest("Novo nome", 10);
+
+        Mockito.when(repository.findByIdAndActive(room.getId(), true)).thenReturn(Optional.of(room));
+        Mockito.when(repository.save(room)).thenReturn(room);
+        var result = victim.updateRoom(room.getId(), request);
+
+        Assertions.assertEquals(request.name(), result.name());
+        Assertions.assertEquals(request.seats(), result.seats());
+        verify(roomValidator).validateNameUniqueness(request.name(), room.getId());
+        verify(repository).save(room);
+    }
+
+    @Test
+    void updateRoomShouldThrowExceptionWhenRoomNotFound(){
+        var idNotExist = TestConstants.DEFAULT_ROOM_ID;
+        var request = TestDataCreator.updateRoomRequest();
+
+        Mockito.when(repository.findByIdAndActive(idNotExist, true)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(RoomNotFoundException.class, () -> victim.updateRoom(idNotExist, request));
+        verify(repository, never()).save(any());
+    }
+
+    @Test
+    void updateRoomShouldThrowExceptionWhenNameAlreadyExists(){
+        var request = TestDataCreator.updateRoomRequest();
+
+        Mockito.doThrow(new ConflictException(request.name()))
+                .when(roomValidator).validateNameUniqueness(request.name(), TestConstants.DEFAULT_ROOM_ID);
+
+        Assertions.assertThrows(ConflictException.class, () -> victim.updateRoom(TestConstants.DEFAULT_ROOM_ID, request));
+
+        verify((repository), never()).findByIdAndActive(TestConstants.DEFAULT_ROOM_ID, true);
+        verify((repository), never()).save(any());
     }
 }

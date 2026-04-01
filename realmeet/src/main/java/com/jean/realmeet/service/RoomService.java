@@ -1,8 +1,10 @@
 package com.jean.realmeet.service;
 
+import com.jean.realmeet.domain.entity.Room;
 import com.jean.realmeet.domain.repository.RoomRepository;
 import com.jean.realmeet.dto.CreateRoomRequest;
 import com.jean.realmeet.dto.RoomResponse;
+import com.jean.realmeet.dto.UpdateRoomRequest;
 import com.jean.realmeet.exception.RoomNotFoundException;
 import com.jean.realmeet.mapper.RoomMapper;
 import com.jean.realmeet.validator.RoomValidator;
@@ -27,11 +29,11 @@ public class RoomService {
 
     @Transactional(readOnly = true)
     public RoomResponse getRoom(Long roomId){
-        nonNull(roomId);
-        return repository.findByIdAndActive(roomId, true)
-                .map(mapper::fromRoomToResponse)
-                .orElseThrow(RoomNotFoundException::new);
+        var room = getActiveRoomOrThrow(roomId);
+        return mapper.fromRoomToResponse(room);
     }
+
+
 
     @Transactional
     public RoomResponse create(CreateRoomRequest request){
@@ -43,9 +45,23 @@ public class RoomService {
 
     @Transactional
     public void delete(Long id){
-        var room = repository.findByIdAndActive(id, true)
-                .orElseThrow(RoomNotFoundException::new);
-
-        room.desative();
+        getActiveRoomOrThrow(id);
+        repository.deactive(id);
     }
+
+    @Transactional
+    public RoomResponse updateRoom(Long rooId, UpdateRoomRequest request){
+        validator.validateNameUniqueness(request.name(), rooId);
+        var room = getActiveRoomOrThrow(rooId);
+        room.update(request.name(), request.seats());
+        return mapper.fromRoomToResponse(repository.save(room));
+    }
+
+    private Room getActiveRoomOrThrow(Long roomId) {
+        nonNull(roomId);
+        return repository.findByIdAndActive(roomId, true)
+                .orElseThrow(RoomNotFoundException::new);
+    }
+
+
 }
